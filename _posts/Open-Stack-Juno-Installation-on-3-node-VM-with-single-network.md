@@ -3,8 +3,6 @@ layout: post
 title: Open Stack Installation on a 3 node VM with single network!
 ---
 
-# Open Stack Installation on a 3 node VM with single network
-
 ## Introduction
 One of the most common problem faced by user while setting up a 3 node open stack installtion is unavailability of 3 different types of network as listed in the [open stack documentation](http://docs.openstack.org/juno/install-guide/install/apt/content/index.html). The document suggests to have 3 networks namely management network, instance tunnel network and external network. While setting up open stack on your laptop or desktop it is not possible to have 3 NIC cards which could provide 3 types of network as listed. In the following sections I will provide some tips to achieve the same while running in on your laptop or desktop which has got just one nic card
 
