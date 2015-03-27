@@ -99,4 +99,25 @@ Once these changes are done reboot all the nodes and check if you are able to pi
   "trusty-updates/juno main" > /etc/apt/sources.list.d/cloudarchive-juno.list
 * apt-get update && apt-get dist-upgrade on all the nodes. This will update the packages to latest in your system. If the upgrade process upgrades kernel than reboot your system
 * Setup MySQL Database on controller node
-  * 
+  * apt-get install mariadb-server python-mysqldb
+  * Choose a suitable password for the database root account
+  * Edit the /etc/mysql/my.cnf file and complete the following actions:
+    [mysqld]
+     ...
+     bind-address = 10.0.0.100
+  * In the [mysqld] section, set the following keys to enable useful options and the UTF-8 character set:
+    [mysqld]
+     ...
+     default-storage-engine = innodb
+     innodb_file_per_table
+     collation-server = utf8_general_ci
+     init-connect = 'SET NAMES utf8'
+     character-set-server = utf8
+  * Restart the database service:
+    service mysql restart
+  * Secure the database service:
+    mysql_secure_installation
+* Setup Rabbitmq on controller node
+  * apt-get install rabbitmq-server
+  * rabbitmqctl change_password guest "specify your own password"
+This completes the process of setting up yor base installation now we are already to start setting up various open stack services.
