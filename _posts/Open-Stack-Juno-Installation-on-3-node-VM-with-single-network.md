@@ -149,7 +149,7 @@ Follow the steps as mentioned below
   * In controller node run the command "source admin-openrc.sh"
   * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external --provider:network_type flat"
   * Creating the subnet. This is the most important part as we need to make sure we do not assign a IP range which        could overlap with any of the existing IP addresses assisgned any of the network connected devices. Run the           following command:
-    neutron subnet-create ext-net --name ext-subnet --allocation-pool start=10.0.0.150,end=10.0.0.200 --disable-dhcp      --gateway 10.0.0.1 10.0.0.0/24
+    neutron subnet-create ext-net --name ext-subnet --allocation-pool start=10.0.0.150,end=10.0.0.200 --disable-dhcp      --gateway 10.0.0.1 10.0.0.0/24  
 **Creating Tenant Network**
   * In the controller node run the command "source demo-openrc.sh"
   * Create the tenant network using the command "neutron net-create demo-net"
