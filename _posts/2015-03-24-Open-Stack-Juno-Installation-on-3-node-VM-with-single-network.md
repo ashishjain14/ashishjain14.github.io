@@ -9,27 +9,27 @@ One of the most common problem faced by user while setting up a 3 node open stac
 ## Initial Setup
 I have used Ubuntu 14.04 with 8 GB RAM for that. My physical router distributes IP with the following CIDR 10.0.0.0/24. Install Virtual Box and fork out 3 VM's with Bridge Network and promiscious mode set as "Allow All". Here is how the VM configuration would look like
 
-**VM1**
-* HostName - openstackcontroller
-* RAM - 1 GB
-* HDD - 8 GB
-* CPU - 1 
-* Network Adapter - 1 nos
-
-**VM2**
-* HostName - openstacknetwork
-* RAM - 512 MB
-* HDD - 8 GB
-* CPU - 1 
-* Network Adapter - 3 nos
-
-**VM3**
-* HostName - openstackcompute
-* RAM - 4 GB
-* HDD - 8 GB
-* CPU - 1 
-* Network Adapter - 2 nos
-
+**VM1**  
+* HostName - openstackcontroller  
+* RAM - 1 GB  
+* HDD - 8 GB  
+* CPU - 1  
+* Network Adapter - 1 nos  
+  
+**VM2**  
+* HostName - openstacknetwork  
+* RAM - 512 MB  
+* HDD - 8 GB  
+* CPU - 1   
+* Network Adapter - 3 nos  
+  
+**VM3**  
+* HostName - openstackcompute  
+* RAM - 4 GB  
+* HDD - 8 GB  
+* CPU - 1  
+* Network Adapter - 2 nos  
+  
 Once your VM is up and running setup static IP addresses for all the adapter in each of the VM except eth2 in openstacknetwork host. Moreover whereever referred eth0 is out management network, eth1 is internal tunnel network and eth2 is external network. Here is how you can go about it making the changes to your network on each of the nodes
 
 **Openstackcontroller node**  
