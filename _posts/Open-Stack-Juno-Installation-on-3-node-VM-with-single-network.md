@@ -34,8 +34,7 @@ I have used Ubuntu 14.04 with 8 GB RAM for that. My physical router distributes 
 
 Once your VM is up and running setup static IP addresses for all the adapter in each of the VM except eth2 in openstacknetwork host. Moreover whereever referred eth0 is out management network, eth1 is internal tunnel network and eth2 is external network. Here is how you can go about it making the changes to your network on each of the nodes
 
-**Openstackcontroller node**
-
+**Openstackcontroller node**  
 Modify /etc/network/interfaces as follows:  
 auto lo  
 iface lo inet loopback  
@@ -49,6 +48,7 @@ broadcast 10.0.0.255
 gateway 10.0.0.1  
   
 **Openstacknetwork node**  
+Modify /etc/network/interfaces as follows:  
 auto lo  
 iface lo inet loopback  
   
@@ -71,7 +71,7 @@ up ip link set dev $IFACE up
 down ip link set dev $IFACE down  
 
 **Openstackcompute node**  
-  
+  Modify /etc/network/interfaces as follows:  
 auto lo  
 iface lo inet loopback  
 auto eth0  
@@ -147,7 +147,7 @@ There are two steps to this. One is creating external network and other is creat
 **Creating External Network**
 Follow the steps as mentioned below
   * In controller node run the command "source admin-openrc.sh"
-  * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external --provider:network_type flat". 
+  * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external --provider:network_type flat"
   * Creating the subnet. This is the most important part as we need to make sure we do not assign a IP range which could overlap with any of the existing IP addresses assisgned any of the network connected devices. Run the following command:
      neutron subnet-create ext-net --name ext-subnet --allocation-pool start=10.0.0.150,end=10.0.0.200 --disable-dhcp --gateway 10.0.0.1 10.0.0.0/24
   
