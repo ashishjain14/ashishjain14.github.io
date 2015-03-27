@@ -145,7 +145,6 @@ Follow the link [Set up Networking Service] (http://docs.openstack.org/juno/inst
 **Create Initial Networks**  
 There are two steps to this. One is creating external network and other is creating tenant network.  
 **Creating External Network**  
-Follow the steps as mentioned below
   * In controller node run the command "source admin-openrc.sh"
   * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external --provider:network_type flat"
   * Creating the subnet. This is the most important part as we need to make sure we do not assign a IP range which        could overlap with any of the existing IP addresses assisgned any of the network connected devices. Run the           following command:
