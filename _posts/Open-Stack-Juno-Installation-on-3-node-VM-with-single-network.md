@@ -27,7 +27,7 @@ I have used Ubuntu 14.04 with 8 GB RAM for that. My physical router distributes 
 * CPU - 1 
 * Network Adapter - 2 nos
 
-Once your VM is up and running setup static IP addresses for all the adapter in each of the VM except eth2 in openstacknetwork host. Here is how you can go about it
+Once your VM is up and running setup static IP addresses for all the adapter in each of the VM except eth2 in openstacknetwork host. Moreover whereever referred eth0 is out management network, eth1 is internal tunnel network and eth2 is external network. Here is how you can go about it making the changes to your network on each of the nodes
 
 **Openstackcontroller node**
 
@@ -81,3 +81,17 @@ auto eth1
 iface eth1 inet static  
 address 10.0.0.102  
 netmask 255.255.255.0  
+
+Once these changes are done reboot all the nodes and check if you are able to ping each of the IP addresses as defined in the configuration.
+
+**Few Other Configuration**
+* Setup  NTP on all the nodes
+* Setup UTC on all the nodes
+* Setup /etc/hosts on all the nodes
+* Install the Ubuntu Cloud archive keyring and repository on all the nodes:
+  * apt-get install ubuntu-cloud-keyring
+  * echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu"
+  "trusty-updates/juno main" > /etc/apt/sources.list.d/cloudarchive-juno.list
+* apt-get update && apt-get dist-upgrade on all the nodes. This will update the packages to latest in your system. If the upgrade process upgrades kernel than reboot your system
+* Setup MySQL Database on controller node
+  * 
