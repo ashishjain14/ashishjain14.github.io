@@ -148,20 +148,20 @@ There are two steps to this. One is creating external network and other is creat
 Follow the steps as mentioned below
   * In controller node run the command "source admin-openrc.sh"
   * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external --provider:network_type flat"
-  * Creating the subnet. This is the most important part as we need to make sure we do not assign a IP range which could overlap with any of the existing IP addresses assisgned any of the network connected devices. Run the following command:
-     neutron subnet-create ext-net --name ext-subnet --allocation-pool start=10.0.0.150,end=10.0.0.200 --disable-dhcp --gateway 10.0.0.1 10.0.0.0/24  
+  * Creating the subnet. This is the most important part as we need to make sure we do not assign a IP range which        could overlap with any of the existing IP addresses assisgned any of the network connected devices. Run the           following command:
+    neutron subnet-create ext-net --name ext-subnet --allocation-pool start=10.0.0.150,end=10.0.0.200 --disable-dhcp      --gateway 10.0.0.1 10.0.0.0/24
 **Creating Tenant Network**
   * In the controller node run the command "source demo-openrc.sh"
   * Create the tenant network using the command "neutron net-create demo-net"
-  * Create a subnet for tenant network "neutron subnet-create demo-net --name demo-subnet --gateway 192.168.1.1 192.168.1.0/24. Don't worry this is a network internal to open stack and hence there is not problem if such a gateway or network doesn't exist.
+  * Create a subnet for tenant network "neutron subnet-create demo-net --name demo-subnet --gateway 192.168.1.1           192.168.1.0/24. Don't worry this is a network internal to open stack and hence there is not problem if such a         gateway or network doesn't exist.
   * Create a router on the tenant network "neutron router-create demo-router"
   * Attach the router to the demo tenant subnet "neutron router-interface-add demo-router demo-subnet"
-  * Attach the router to the external network by setting it as the gateway "neutron router-gateway-set demo-router ext-net"
-  * Once you are done with all this your router on the tenant network should get the lowes possible IP address which is 10.0.0.150. You can cross check it with running the command "neutron router-list". Try pinging this router from any of nodes. If you are unable to ping it then there is some problem with your setup
+  * Attach the router to the external network by setting it as the gateway "neutron router-gateway-set demo-router        ext-net"
+  * Once you are done with all this your router on the tenant network should get the lowes possible IP address which      is 10.0.0.150. You can cross check it with running the command "neutron router-list". Try pinging this router from     any of nodes. If you are unable to ping it then there is some problem with your setup
 
 If all is well till here we are all set to launch our first VM.
 
-**Lauch an Openstack VM Instance**  
+##Lauch an Openstack VM Instance  
 This is why all the above exercise was done. Follow the link [Launch an Openstack VM Instance ](http://docs.openstack.org/juno/install-guide/install/apt/content/launch-instance-neutron.html) to launch your first VM. Do not forget to SSH into it.
 
 This is all I had hope this will be useful.
