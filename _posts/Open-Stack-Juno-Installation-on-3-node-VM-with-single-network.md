@@ -121,3 +121,19 @@ Once these changes are done reboot all the nodes and check if you are able to pi
   * apt-get install rabbitmq-server
   * rabbitmqctl change_password guest "specify your own password"
 This completes the process of setting up yor base installation now we are already to start setting up various open stack services.
+
+## Add the Identity service
+Next step is to configure the keystone service which is the identity service for authentication & authorization. It also acts as a catalog for various services.
+
+Follow the link [Set up Identity Service](http://docs.openstack.org/juno/install-guide/install/apt/content/ch_keystone.html) to set up openstack keystone.
+
+## Add the Glance service
+The OpenStack Image Service glance is the central repository for all the VM images. This also holds the metadata definitions for all the open stack services.
+
+Follow the link [Set up Glance Service](http://docs.openstack.org/juno/install-guide/install/apt/content/ch_glance.html) to set up openstack glance.
+
+## Add the Compute service
+The OpenStack compute virtualizes the underneath Compute hardware(CPU and RAM) and provides those in the form of Virtual machines.
+
+Follow the link [Set up Compute Service](http://docs.openstack.org/juno/install-guide/install/apt/content/ch_nova.html) to set up openstack compute.
+
