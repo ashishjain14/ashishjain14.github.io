@@ -31,36 +31,53 @@ Once your VM is up and running setup static IP addresses for all the adapter in 
 
 **Openstackcontroller node**
 
-Modify /etc/network/interfaces as follows:
-auto lo
-iface lo inet loopback
+Modify /etc/network/interfaces as follows:  
+auto lo  
+iface lo inet loopback  
+  
+auto eth0  
+iface eth0 inet static  
+address 10.0.0.100  
+network 10.0.0.0  
+netmask 255.255.255.0  
+broadcast 10.0.0.255  
+gateway 10.0.0.1  
+  
+**Openstacknetwork node**  
+auto lo  
+iface lo inet loopback  
+  
+auto eth0  
+iface eth0 inet static  
+address 10.0.0.103  
+network 10.0.0.0  
+netmask 255.255.255.0  
+broadcast 10.0.0.255  
+gateway 10.0.0.1  
+  
+auto eth1  
+iface eth1 inet static  
+address 10.0.0.104  
+netmask 255.255.255.0  
+  
+auto eth2  
+iface eth2 inet manual  
+up ip link set dev $IFACE up  
+down ip link set dev $IFACE down  
 
-auto eth0
-iface eth0 inet static
-address 10.0.0.100
-network 10.0.0.0
-netmask 255.255.255.0
-broadcast 10.0.0.255
-gateway 10.0.0.1
-
-**Openstacknetwork node**
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0 inet static
-address 10.0.0.103
-network 10.0.0.0
-netmask 255.255.255.0
-broadcast 10.0.0.255
-gateway 10.0.0.1
-
-auto eth1
-iface eth1 inet static
-address 10.0.0.104
-netmask 255.255.255.0
-
-auto eth2
-iface eth2 inet manual
-up ip link set dev $IFACE up
-down ip link set dev $IFACE down
+**Openstackcompute node**  
+  
+auto lo  
+iface lo inet loopback  
+auto eth0  
+iface eth0 inet static  
+address 10.0.0.101  
+network 10.0.0.0  
+broadcast 10.0.0.255  
+netmask 255.255.255.0  
+gateway 10.0.0.1  
+  
+auto eth1  
+iface eth1 inet static  
+address 10.0.0.102  
+netmask 255.255.255.0  
