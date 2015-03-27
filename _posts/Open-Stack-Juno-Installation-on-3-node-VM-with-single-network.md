@@ -162,7 +162,7 @@ Follow the steps as mentioned below
 
 If all is well till here we are all set to launch our first VM.
 
-**Lauch an Openstack VM Instance**
+**Lauch an Openstack VM Instance**  
 This is why all the above exercise was done. Follow the link [Launch an Openstack VM Instance ](http://docs.openstack.org/juno/install-guide/install/apt/content/launch-instance-neutron.html) to launch your first VM. Do not forget to SSH into it.
 
 This is all I had hope this will be useful.
