@@ -87,23 +87,23 @@ netmask 255.255.255.0
 
 Once these changes are done reboot all the nodes and check if you are able to ping each of the IP addresses as defined in the configuration.
 
-**Few Other Configuration**
-* Setup  NTP on all the nodes
-* Setup UTC on all the nodes
-* Setup /etc/hosts on all the nodes
-* Install the Ubuntu Cloud archive keyring and repository on all the nodes:
-  * apt-get install ubuntu-cloud-keyring
-  * echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu"
-  "trusty-updates/juno main" > /etc/apt/sources.list.d/cloudarchive-juno.list
-* apt-get update && apt-get dist-upgrade on all the nodes. This will update the packages to latest in your system. If the upgrade process upgrades kernel than reboot your system
-* Setup MySQL Database on controller node
-  * apt-get install mariadb-server python-mysqldb
-  * Choose a suitable password for the database root account
-  * Edit the /etc/mysql/my.cnf file and complete the following actions:
-    [mysqld]
-     ...
-     bind-address = 10.0.0.100
-  * In the [mysqld] section, set the following keys to enable useful options and the UTF-8 character set:
+**Few Other Configuration**  
+* Setup  NTP on all the nodes  
+* Setup UTC on all the nodes  
+* Setup /etc/hosts on all the nodes  
+* Install the Ubuntu Cloud archive keyring and repository on all the nodes:  
+  * apt-get install ubuntu-cloud-keyring  
+  * echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu"  
+  "trusty-updates/juno main" > /etc/apt/sources.list.d/cloudarchive-juno.list  
+* apt-get update && apt-get dist-upgrade on all the nodes. This will update the packages to latest in your system. If the upgrade process upgrades kernel than reboot your system  
+* Setup MySQL Database on controller node  
+  * apt-get install mariadb-server python-mysqldb  
+  * Choose a suitable password for the database root account  
+  * Edit the /etc/mysql/my.cnf file and complete the following actions:  
+    [mysqld]  
+     ...  
+     bind-address = 10.0.0.100  
+  * In the [mysqld] section, set the following keys to enable useful options and the UTF-8 character set:  
     [mysqld]
      ...
      default-storage-engine = innodb
@@ -111,13 +111,13 @@ Once these changes are done reboot all the nodes and check if you are able to pi
      collation-server = utf8_general_ci
      init-connect = 'SET NAMES utf8'
      character-set-server = utf8
-  * Restart the database service:
-    service mysql restart
-  * Secure the database service:
-    mysql_secure_installation
-* Setup Rabbitmq on controller node
-  * apt-get install rabbitmq-server
-  * rabbitmqctl change_password guest "specify your own password"
+  * Restart the database service:  
+    service mysql restart  
+  * Secure the database service:  
+    mysql_secure_installation  
+* Setup Rabbitmq on controller node  
+  * apt-get install rabbitmq-server  
+  * rabbitmqctl change_password guest "specify your own password"  
 This completes the process of setting up yor base installation now we are already to start setting up various open stack services.
 
 ## Add the Identity service
@@ -143,18 +143,18 @@ Follow the link [Set up Networking Service] (http://docs.openstack.org/juno/inst
 **Create Initial Networks**  
 There are two steps to this. One is creating external network and other is creating tenant network.  
 **Creating External Network**  
-  * In controller node run the command "source admin-openrc.sh"
-  * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external --provider:network_type flat"
+  * In controller node run the command "source admin-openrc.sh"  
+  * Run the command "neutron net-create ext-net --router:external True --provider:physical_network external   --provider:network_type flat"  
   * Creating the subnet. This is the most important part as we need to make sure we do not assign a IP range which        could overlap with any of the existing IP addresses assisgned any of the network connected devices. Run the           following command:
     neutron subnet-create ext-net --name ext-subnet --allocation-pool start=10.0.0.150,end=10.0.0.200 --disable-dhcp      --gateway 10.0.0.1 10.0.0.0/24  
 **Creating Tenant Network**
-  * In the controller node run the command "source demo-openrc.sh"
-  * Create the tenant network using the command "neutron net-create demo-net"
-  * Create a subnet for tenant network "neutron subnet-create demo-net --name demo-subnet --gateway 192.168.1.1           192.168.1.0/24. Don't worry this is a network internal to open stack and hence there is not problem if such a         gateway or network doesn't exist.
-  * Create a router on the tenant network "neutron router-create demo-router"
-  * Attach the router to the demo tenant subnet "neutron router-interface-add demo-router demo-subnet"
-  * Attach the router to the external network by setting it as the gateway "neutron router-gateway-set demo-router        ext-net"
-  * Once you are done with all this your router on the tenant network should get the lowes possible IP address which      is 10.0.0.150. You can cross check it with running the command "neutron router-list". Try pinging this router from     any of nodes. If you are unable to ping it then there is some problem with your setup
+  * In the controller node run the command "source demo-openrc.sh"  
+  * Create the tenant network using the command "neutron net-create demo-net"  
+  * Create a subnet for tenant network "neutron subnet-create demo-net --name demo-subnet --gateway 192.168.1.1            192.168.1.0/24. Don't worry this is a network internal to open stack and hence there is not problem if such a         gateway or network doesn't exist.  
+  * Create a router on the tenant network "neutron router-create demo-router"  
+  * Attach the router to the demo tenant subnet "neutron router-interface-add demo-router demo-subnet"  
+  * Attach the router to the external network by setting it as the gateway "neutron router-gateway-set demo-router        ext-net"  
+  * Once you are done with all this your router on the tenant network should get the lowes possible IP address which      is 10.0.0.150. You can cross check it with running the command "neutron router-list". Try pinging this router from     any of nodes. If you are unable to ping it then there is some problem with your setup  
 
 If all is well till here we are all set to launch our first VM.
 
