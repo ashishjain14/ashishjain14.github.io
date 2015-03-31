@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Avid follower and practitioner of open source technologies
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+A budding open stack developer :)
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[ashish.jain14@wipro.com](mailto:email@domain.com)
