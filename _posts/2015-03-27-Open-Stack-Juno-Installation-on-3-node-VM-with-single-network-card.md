@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Open Stack Installation on a 3 node VM with single network!
+title: Open Stack Installation on a 3 node VM with single network card!
 ---
 
 ## Introduction
